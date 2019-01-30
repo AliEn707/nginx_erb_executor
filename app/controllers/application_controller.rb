@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   def erb
 	  fullpath="#{params[:path]}.erb"
-	  render file: fullpath#, layout:"#{Rails.root}/#{fullpath}"#, :formats => ['']
+	  render file: fullpath, layout: false#"#{Rails.root}/#{fullpath}"#, :formats => ['']
   end
 end

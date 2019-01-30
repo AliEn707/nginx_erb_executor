@@ -12,6 +12,6 @@ module ApplicationHelper
 	end
 	
 	def local_files
-		`find #{folder}/ -maxdepth 1 -type f`.split().map{|e| e.split("/")[-1]}-[file]
+		`cd #{folder};find  -maxdepth 1 -type f | sed "s|^\./||"  | sort -n`.split().map{|e| e.split("/")[-1]}-[file]
 	end
 end

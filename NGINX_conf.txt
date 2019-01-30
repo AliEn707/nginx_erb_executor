@@ -1,0 +1,20 @@
+upstream executor {
+	server localhost:3031;
+	keepalive 16;
+}
+
+server {
+	root /var/wwwdisk;
+	...
+}
+
+location / {
+	index index.erb index.html
+	...
+}
+
+location ~ \.erb$ {
+	fastcgi_index index.erb;
+	rewrite ^(.*)$ /var/wwwdisk/$1 break;
+	proxy_pass http://executor;
+}
